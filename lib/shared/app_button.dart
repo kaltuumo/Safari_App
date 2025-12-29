@@ -15,23 +15,23 @@ class AppButton extends StatelessWidget {
     required this.onPressed,
     this.backgroundColor = Colors.orange,
     this.borderRadius = 8.0,
-    this.height = 50,
+    this.height = 50, // default height
     this.fontSize = 16,
   });
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: double.infinity,
-      height: height,
-      child: ElevatedButton(
-        onPressed: onPressed,
-        style: ElevatedButton.styleFrom(
-          backgroundColor: backgroundColor,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(borderRadius),
-          ),
+    return GestureDetector(
+      onTap: onPressed,
+      child: Container(
+        // Width-ka ha ahaado auto (default)
+        height: height,
+        decoration: BoxDecoration(
+          color: backgroundColor,
+          borderRadius: BorderRadius.circular(borderRadius),
         ),
+        alignment: Alignment.center,
+        padding: const EdgeInsets.symmetric(horizontal: 16), // optional padding
         child: Text(
           text,
           style: TextStyle(

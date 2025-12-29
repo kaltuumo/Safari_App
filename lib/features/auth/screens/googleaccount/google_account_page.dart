@@ -1,7 +1,7 @@
-// file: google_account_page.dart
 import 'package:flutter/material.dart';
 import 'package:safari_app/features/auth/screens/otp/otp_page.dart';
 import 'package:safari_app/shared/app_button.dart';
+import 'package:safari_app/shared/custom_social_button.dart';
 import 'package:safari_app/utils/constant/images.dart';
 
 class GoogleAccountPage extends StatefulWidget {
@@ -16,20 +16,27 @@ class _GoogleAccountPageState extends State<GoogleAccountPage> {
 
   @override
   Widget build(BuildContext context) {
+    // ✅ MediaQuery
+    final width = MediaQuery.of(context).size.width;
+    final height = MediaQuery.of(context).size.height;
+
     return Scaffold(
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 50),
+          padding: EdgeInsets.symmetric(
+            horizontal: width * 0.03,
+            vertical: height * 0.06,
+          ),
           child: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const SizedBox(height: 20),
+                SizedBox(height: height * 0.025),
+
                 Padding(
-                  padding: EdgeInsets.only(left: 30), // padding dhinaca bidix
+                  padding: EdgeInsets.only(left: width * 0.06),
                   child: Column(
-                    crossAxisAlignment:
-                        CrossAxisAlignment.start, // qoraalka dhinaca bidix
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: const [
                       Text(
                         "Join Us Today!",
@@ -37,114 +44,173 @@ class _GoogleAccountPageState extends State<GoogleAccountPage> {
                           color: Colors.black,
                           fontWeight: FontWeight.bold,
                           fontSize: 20,
-                          height: 1.5, // line spacing
+                          height: 1.5,
                         ),
                       ),
-                      SizedBox(height: 5), // spacing u dhexeeya labada Text
+                      SizedBox(height: 5),
                       Text(
                         "Create Account in a Few Simple Steps and Unlock Access to Exclusive Features.",
                         style: TextStyle(
                           color: Colors.grey,
                           fontSize: 16,
-                          height: 1.5, // line spacing
+                          height: 1.5,
                         ),
                       ),
                     ],
                   ),
                 ),
 
-                const SizedBox(height: 30),
+                SizedBox(height: height * 0.04),
 
-                // Custom Styled TextField Container
+                // Phone Number Input
+                Padding(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: width * 0.05,
+                  ), // same as button
+
+                  child: const Text(
+                    "Phone Number",
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+                  ),
+                ),
+                SizedBox(height: height * 0.01),
+
                 Container(
+                  margin: EdgeInsets.symmetric(
+                    horizontal: width * 0.05,
+                  ), // same as button
+                  width: double.infinity,
+                  height: height * 0.061,
                   decoration: BoxDecoration(
-                    border: Border.all(color: Colors.grey),
+                    border: Border.all(color: Colors.grey.withOpacity(0.3)),
                     borderRadius: BorderRadius.circular(12),
                   ),
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 15,
-                    vertical: 1,
-                  ),
+                  padding: EdgeInsets.symmetric(horizontal: width * 0.04),
                   child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      const Text("🇸🇴 +252", style: TextStyle(fontSize: 16)),
-                      const SizedBox(width: 10),
+                      const Text(
+                        "🇸🇴 +252",
+                        style: TextStyle(fontSize: 16, color: Colors.grey),
+                      ),
+                      // Divider
+                      Container(
+                        height: 24,
+                        width: 1,
+                        color: Colors.grey.withOpacity(0.3),
+                        margin: const EdgeInsets.symmetric(horizontal: 8),
+                      ),
+                      // SizedBox(width: width * 0.025),
                       Expanded(
                         child: TextField(
                           controller: phoneController,
                           keyboardType: TextInputType.number,
                           decoration: const InputDecoration(
                             hintText: "Enter your number",
+                            hintStyle: TextStyle(color: Colors.grey),
                             border: InputBorder.none,
+                            isDense: true,
+                            contentPadding: EdgeInsets.zero,
                           ),
                         ),
                       ),
                     ],
                   ),
                 ),
-                const SizedBox(height: 24),
-                AppButton(
-                  text: "Send Code",
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => const OtpPage()),
-                    );
-                  },
+
+                SizedBox(height: height * 0.03),
+
+                // Send Code Button
+                Container(
+                  margin: EdgeInsets.symmetric(
+                    horizontal: width * 0.05,
+                  ), // same as phone input
+                  width: double.infinity,
+                  height: height * 0.061,
+                  child: AppButton(
+                    text: "Send Code",
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const OtpPage(),
+                        ),
+                      );
+                    },
+                  ),
                 ),
-                const SizedBox(height: 30),
-                Row(
-                  children: [
-                    Expanded(
-                      child: Divider(color: Colors.grey[300], thickness: 1),
-                    ),
-                    const Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 8.0),
-                      child: Text(
-                        "Or Continue With",
-                        style: TextStyle(color: Colors.grey, fontSize: 14),
+
+                SizedBox(height: height * 0.04),
+
+                /// Divider
+                SizedBox(
+                  width: width,
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Container(
+                          height: 1,
+                          color: Colors.grey.withOpacity(0.3),
+                          margin: EdgeInsets.only(left: width * 0.05, right: 6),
+                        ),
                       ),
-                    ),
-                    Expanded(
-                      child: Divider(color: Colors.grey[300], thickness: 1),
-                    ),
-                  ],
+                      const Text(
+                        "Or continue with",
+                        style: TextStyle(color: Colors.grey),
+                      ),
+                      Expanded(
+                        child: Container(
+                          height: 1,
+                          color: Colors.grey.withOpacity(0.3),
+                          margin: EdgeInsets.only(left: 6, right: width * 0.05),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-                SizedBox(height: 24),
-                // Social Buttons Row (icon-only)
+                SizedBox(height: height * 0.03),
+
+                /// Social buttons
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    SocialButton(
+                    CustomSocialButton(
+                      size: width * 0.13,
                       iconWidget: Image.asset(
                         AppImages.googleLogo,
-                        width: 24,
-                        height: 24,
+                        width: width * 0.06,
+                        height: width * 0.06,
                       ),
                       onPressed: () {},
                     ),
-                    SizedBox(width: 20),
-                    SocialButton(
+                    SizedBox(width: width * 0.05),
+                    CustomSocialButton(
+                      size: width * 0.13,
                       iconWidget: Image.asset(
                         AppImages.appleLogo,
-                        width: 30,
-                        height: 30,
+                        width: width * 0.06,
+                        height: width * 0.06,
+                        fit: BoxFit.contain, // 👈 Important
                       ),
                       onPressed: () {},
                     ),
-                    SizedBox(width: 20),
-
-                    SocialButton(
+                    SizedBox(width: width * 0.05),
+                    CustomSocialButton(
+                      size: width * 0.13,
                       iconWidget: Image.asset(
                         AppImages.facebookLogo,
-                        width: 24,
-                        height: 24,
+                        width: width * 0.06,
+                        height: width * 0.06,
+                        fit: BoxFit.contain, // 👈 Important
                       ),
                       onPressed: () {},
                     ),
                   ],
                 ),
-                const SizedBox(height: 20),
+
+                SizedBox(height: height * 0.03),
+
+                /// Bottom text
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -153,13 +219,11 @@ class _GoogleAccountPageState extends State<GoogleAccountPage> {
                       style: TextStyle(color: Colors.grey),
                     ),
                     GestureDetector(
-                      onTap: () {
-                        // Navigate to Sign In page
-                      },
+                      onTap: () {},
                       child: const Text(
                         "Sign In",
                         style: TextStyle(
-                          color: const Color(0xFFC3161C),
+                          color: Color(0xFFC3161C),
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -170,38 +234,6 @@ class _GoogleAccountPageState extends State<GoogleAccountPage> {
             ),
           ),
         ),
-      ),
-    );
-  }
-}
-
-/// Custom Social Button (icon-only, rounded)
-class SocialButton extends StatelessWidget {
-  final Widget iconWidget;
-  final VoidCallback onPressed;
-
-  const SocialButton({
-    super.key,
-    required this.iconWidget,
-    required this.onPressed,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      height: 50,
-      width: 50, // square button
-      child: OutlinedButton(
-        onPressed: onPressed,
-        style: OutlinedButton.styleFrom(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(12),
-          ),
-          side: const BorderSide(color: Colors.grey),
-          backgroundColor: Colors.white,
-          padding: EdgeInsets.zero,
-        ),
-        child: iconWidget,
       ),
     );
   }

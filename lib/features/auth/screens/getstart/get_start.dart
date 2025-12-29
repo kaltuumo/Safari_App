@@ -7,6 +7,10 @@ class GetStartedPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Screen size
+    final width = MediaQuery.of(context).size.width;
+    final height = MediaQuery.of(context).size.height;
+
     return Scaffold(
       body: GestureDetector(
         onTap: () {
@@ -16,28 +20,32 @@ class GetStartedPage extends StatelessWidget {
           );
         },
         child: Container(
-          width: double.infinity,
-          height: double.infinity,
+          width: width,
+          height: height,
           color: const Color(0xFFC3161C),
           child: Stack(
             children: [
-              // Logo-ga bartamaha
               Center(
                 child: Image.asset(
                   AppImages.whitelogo,
-                  width: 150,
-                  height: 150,
+                  width: width * 0.4,
+                  height: width * 0.4,
+                  fit: BoxFit.contain,
                 ),
               ),
-              // Qoraalka hooska
-              const Positioned(
-                bottom: 20,
+
+              // Qoraalka hooska (responsive)
+              Positioned(
+                bottom: height * 0.04,
                 left: 0,
                 right: 0,
                 child: Text(
                   "Made with ❤️ by Duuliye.con",
                   textAlign: TextAlign.center,
-                  style: TextStyle(color: Colors.white, fontSize: 14),
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: width * 0.035,
+                  ),
                 ),
               ),
             ],
