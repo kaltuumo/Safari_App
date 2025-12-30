@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:safari_app/features/auth/screens/createpassword/widget/success_bottom_sheet.dart';
 import 'package:safari_app/shared/app_button.dart';
 import 'package:safari_app/utils/constant/images.dart';
 
@@ -164,7 +165,7 @@ class _CreateNewPasswordState extends State<CreateNewPassword> {
                   child: AppButton(
                     text: "Submit",
                     onPressed: () {
-                      showSuccessBottomSheet(context);
+                      SuccessBottomSheet.show(context);
                     },
                   ),
                 ),
