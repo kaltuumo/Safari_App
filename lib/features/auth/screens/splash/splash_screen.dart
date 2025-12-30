@@ -9,7 +9,6 @@ class SplashScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // ✅ MediaQuery width & height
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
 
@@ -18,9 +17,12 @@ class SplashScreen extends StatelessWidget {
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 24),
+            padding: EdgeInsets.symmetric(
+              horizontal: width * 0.08,
+            ), // 8% of screen width
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment:
+                  CrossAxisAlignment.start, // Text & buttons left aligned
               children: [
                 SizedBox(height: height * 0.04),
 
@@ -29,7 +31,6 @@ class SplashScreen extends StatelessWidget {
                   "Get Started",
                   style: TextStyle(fontSize: 26, fontWeight: FontWeight.bold),
                 ),
-
                 const SizedBox(height: 8),
 
                 /// Subtitle
@@ -37,9 +38,9 @@ class SplashScreen extends StatelessWidget {
                   "Sign up using your email address or quickly log in with your social media account for a seamless experience.",
                   style: TextStyle(fontSize: 14, color: Colors.grey),
                 ),
-
                 SizedBox(height: height * 0.01),
 
+                /// Center Image
                 Center(
                   child: Image.asset(
                     AppImages.splash,
@@ -48,9 +49,9 @@ class SplashScreen extends StatelessWidget {
                     fit: BoxFit.contain,
                   ),
                 ),
-
                 SizedBox(height: height * 0.04),
 
+                /// Create Account Button
                 GestureDetector(
                   onTap: () {
                     Navigator.push(
@@ -61,9 +62,12 @@ class SplashScreen extends StatelessWidget {
                     );
                   },
                   child: Container(
-                    width: width,
-                    height: height * 0.063,
-                    margin: EdgeInsets.symmetric(horizontal: width * 0.05),
+                    margin: EdgeInsets.symmetric(
+                      horizontal: width * 0.05,
+                    ), // 5% ka mid ah screen width
+
+                    width: double.infinity, // Raac padding-ka Column
+                    height: height * 0.057,
                     decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(15),
@@ -80,30 +84,25 @@ class SplashScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-
                 SizedBox(height: height * 0.015),
 
-                Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 24,
-                  ), // margin dhinacyada
-                  child: Container(
-                    width: double.infinity,
-                    height: height * 0.055,
-                    child: AppButton(
-                      text: "Sign in",
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const SignInPage(),
-                          ),
-                        );
-                      },
-                    ),
+                /// Sign In Button
+                Container(
+                  margin: EdgeInsets.symmetric(horizontal: width * 0.05),
+                  width: double.infinity, // Raac padding-ka Column
+                  height: height * 0.055,
+                  child: AppButton(
+                    text: "Sign in",
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const SignInPage(),
+                        ),
+                      );
+                    },
                   ),
                 ),
-
                 SizedBox(height: height * 0.025),
 
                 /// Divider
@@ -132,18 +131,15 @@ class SplashScreen extends StatelessWidget {
                     ],
                   ),
                 ),
-
                 SizedBox(height: height * 0.025),
 
-                /// Apple Sign In
+                /// Social Buttons
                 socialButton(
                   context,
                   imageAsset: AppImages.appleLogo,
-                  text: "Sign in with Google",
+                  text: "Sign in with Apple",
                 ),
-
                 SizedBox(height: height * 0.015),
-
                 socialButton(
                   context,
                   imageAsset: AppImages.googleLogo,
@@ -155,6 +151,7 @@ class SplashScreen extends StatelessWidget {
                     );
                   },
                 ),
+                SizedBox(height: height * 0.03),
               ],
             ),
           ),
@@ -163,11 +160,11 @@ class SplashScreen extends StatelessWidget {
     );
   }
 
-  /// Social Button Widget (pure Container-based, responsive)
+  /// Social Button Widget
   Widget socialButton(
     BuildContext context, {
     required String text,
-    required String imageAsset, // icon path
+    required String imageAsset,
     VoidCallback? onPressed,
   }) {
     final width = MediaQuery.of(context).size.width;
@@ -176,9 +173,11 @@ class SplashScreen extends StatelessWidget {
     return GestureDetector(
       onTap: onPressed ?? () {},
       child: Container(
-        // Left & right margin
-        margin: EdgeInsets.symmetric(horizontal: width * 0.05),
-        width: double.infinity, // Buuxi width-ka available
+        margin: EdgeInsets.symmetric(
+          horizontal: width * 0.05,
+        ), // 5% ka mid ah screen width
+
+        width: double.infinity, // Raac padding-ka Column
         height: height * 0.055,
         decoration: BoxDecoration(
           color: Colors.white,

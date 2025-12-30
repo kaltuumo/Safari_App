@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:safari_app/features/auth/screens/personalinformation/personal_information_page.dart';
+import 'package:safari_app/features/auth/screens/profileinformation/profile_information_page.dart';
 import 'package:safari_app/shared/app_button.dart';
 
 class OtpPage extends StatefulWidget {
@@ -44,7 +44,7 @@ class _OtpPageState extends State<OtpPage> {
         child: Padding(
           padding: EdgeInsets.symmetric(
             horizontal: width * 0.05,
-            vertical: height * 0.2, // qoraalka sare u dhowaad top-ka
+            vertical: height * 0.2,
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -64,9 +64,9 @@ class _OtpPageState extends State<OtpPage> {
               ),
               SizedBox(height: height * 0.06),
 
-              // OTP Fields
+              // OTP Fields in one line
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: List.generate(otpLength, (index) {
                   return SizedBox(
                     width: width * 0.14,
@@ -118,11 +118,13 @@ class _OtpPageState extends State<OtpPage> {
                 }),
               ),
               SizedBox(height: height * 0.09),
+
+              // Resend text
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   const Text(
-                    "i didn't receive the code  ",
+                    "I didn't receive the code  ",
                     style: TextStyle(color: Colors.grey),
                   ),
                   GestureDetector(
@@ -141,9 +143,7 @@ class _OtpPageState extends State<OtpPage> {
 
               // Verify Button
               Container(
-                margin: EdgeInsets.symmetric(
-                  horizontal: width * 0.03,
-                ), // same as phone input
+                margin: EdgeInsets.symmetric(horizontal: width * 0.03),
                 width: double.infinity,
                 height: height * 0.06,
                 child: AppButton(
@@ -152,7 +152,7 @@ class _OtpPageState extends State<OtpPage> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const PersonalInformationPage(),
+                        builder: (context) => const ProfileInformationPage(),
                       ),
                     );
                   },

@@ -1,16 +1,16 @@
 // file: personal_info_page.dart
 import 'package:flutter/material.dart';
+import 'package:safari_app/features/auth/screens/createpassword/create_new_password.dart';
 import 'package:safari_app/shared/app_button.dart';
 
-class PersonalInformationPage extends StatefulWidget {
-  const PersonalInformationPage({super.key});
+class ProfileInformationPage extends StatefulWidget {
+  const ProfileInformationPage({super.key});
 
   @override
-  State<PersonalInformationPage> createState() =>
-      _PersonalInformationPageState();
+  State<ProfileInformationPage> createState() => _ProfileInformationPage();
 }
 
-class _PersonalInformationPageState extends State<PersonalInformationPage> {
+class _ProfileInformationPage extends State<ProfileInformationPage> {
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
@@ -22,6 +22,7 @@ class _PersonalInformationPageState extends State<PersonalInformationPage> {
     final List<String> locations = ["Mogadishu", "Nairobi"];
 
     return Scaffold(
+      backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.symmetric(
@@ -33,7 +34,7 @@ class _PersonalInformationPageState extends State<PersonalInformationPage> {
             children: [
               // Qoraalka sare
               Text(
-                "personal Information",
+                "Profile Information",
                 style: TextStyle(
                   fontSize: width * 0.07,
                   fontWeight: FontWeight.bold,
@@ -56,7 +57,7 @@ class _PersonalInformationPageState extends State<PersonalInformationPage> {
                 width: double.infinity,
                 height: height * 0.061,
                 decoration: BoxDecoration(
-                  color: Colors.white,
+                  color: Colors.white, // ka duwan white page background
                   border: Border.all(color: Colors.grey.withOpacity(0.3)),
                   borderRadius: BorderRadius.circular(12),
                 ),
@@ -69,7 +70,7 @@ class _PersonalInformationPageState extends State<PersonalInformationPage> {
                       child: TextField(
                         keyboardType: TextInputType.number,
                         decoration: InputDecoration(
-                          hintText: "Mohamed Hashi",
+                          hintText: "Enter Fullname",
                           border: InputBorder.none,
                           isDense: true,
                           contentPadding: EdgeInsets.zero,
@@ -154,7 +155,7 @@ class _PersonalInformationPageState extends State<PersonalInformationPage> {
                       child: TextField(
                         keyboardType: TextInputType.number,
                         decoration: InputDecoration(
-                          hintText: "Haqabtire@gmail.com",
+                          hintText: "Enter Email Adress",
                           border: InputBorder.none,
                           isDense: true,
                           contentPadding: EdgeInsets.zero,
@@ -242,10 +243,12 @@ class _PersonalInformationPageState extends State<PersonalInformationPage> {
                 child: AppButton(
                   text: "Save",
                   onPressed: () {
-                    // Navigator.push(
-                    //   context,
-                    //   MaterialPageRoute(builder: (context) => const OtpPage()),
-                    // );
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const CreateNewPassword(),
+                      ),
+                    );
                   },
                 ),
               ),

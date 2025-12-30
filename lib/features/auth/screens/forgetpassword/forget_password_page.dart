@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:safari_app/features/auth/screens/forgetpassword/forget_password_page.dart';
 import 'package:safari_app/features/auth/screens/googleaccount/google_account_page.dart';
+import 'package:safari_app/features/auth/screens/otp/otp_page.dart';
 import 'package:safari_app/shared/app_button.dart';
 import 'package:safari_app/shared/custom_social_button.dart';
 import 'package:safari_app/utils/constant/images.dart';
 
-class SignInPage extends StatefulWidget {
-  const SignInPage({super.key});
+class ForgetPasswordPage extends StatefulWidget {
+  const ForgetPasswordPage({super.key});
 
   @override
-  State<SignInPage> createState() => _SignInPageState();
+  State<ForgetPasswordPage> createState() => _ForgetPasswordPage();
 }
 
-class _SignInPageState extends State<SignInPage> {
+class _ForgetPasswordPage extends State<ForgetPasswordPage> {
   bool isPhoneSelected = true;
   bool isPasswordHidden = true;
 
@@ -38,23 +38,30 @@ class _SignInPageState extends State<SignInPage> {
         child: Padding(
           padding: EdgeInsets.symmetric(
             horizontal: width * 0.08,
-            vertical: height * 0.1,
+            vertical: height * 0.15,
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "Welcome Back!",
+                "Forget Password",
                 style: TextStyle(
                   fontSize: width * 0.07,
                   fontWeight: FontWeight.bold,
                 ),
               ),
               const SizedBox(height: 10),
-              const Text(
-                "Login to access your account and continue where\nyou left off. Enter your credentials below to get started.",
-                style: TextStyle(color: Colors.grey, fontSize: 14, height: 1.5),
+              Text(
+                isPhoneSelected
+                    ? "Don't worry! Please enter your phone number associated with your account"
+                    : "Don't worry! Please enter the email address associated with your account",
+                style: const TextStyle(
+                  color: Colors.grey,
+                  fontSize: 14,
+                  height: 1.5,
+                ),
               ),
+
               SizedBox(height: height * 0.03),
 
               /// Toggle Phone / Email
@@ -174,56 +181,6 @@ class _SignInPageState extends State<SignInPage> {
                     ],
                   ),
                 ),
-                // SizedBox(height: ,)
-                Text(
-                  "Password",
-                  style: const TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-
-                Container(
-                  margin: EdgeInsets.symmetric(vertical: height * 0.012),
-                  width: double.infinity,
-                  height: height * 0.061,
-                  padding: EdgeInsets.symmetric(horizontal: width * 0.04),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    border: Border.all(color: Colors.grey.withOpacity(0.2)),
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: TextField(
-                          obscureText: isPasswordHidden,
-                          decoration: const InputDecoration(
-                            hintText: "Enter your password",
-                            border: InputBorder.none,
-                            isDense: true,
-                            contentPadding: EdgeInsets.zero,
-                          ),
-                        ),
-                      ),
-
-                      // 👁 Show / Hide Icon
-                      GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            isPasswordHidden = !isPasswordHidden;
-                          });
-                        },
-                        child: Icon(
-                          isPasswordHidden
-                              ? Icons.visibility_off
-                              : Icons.visibility,
-                          color: Colors.grey,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
               ] else ...[
                 Text(
                   "Email ",
@@ -257,79 +214,7 @@ class _SignInPageState extends State<SignInPage> {
                     ],
                   ),
                 ),
-                // SizedBox(height: ,)
-                Text(
-                  "Password",
-                  style: const TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-
-                Container(
-                  margin: EdgeInsets.symmetric(vertical: height * 0.012),
-                  width: double.infinity,
-                  height: height * 0.061,
-                  padding: EdgeInsets.symmetric(horizontal: width * 0.04),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    border: Border.all(color: Colors.grey.withOpacity(0.2)),
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: TextField(
-                          obscureText: isPasswordHidden,
-                          decoration: const InputDecoration(
-                            hintText: "Enter your password",
-                            border: InputBorder.none,
-                            isDense: true,
-                            contentPadding: EdgeInsets.zero,
-                          ),
-                        ),
-                      ),
-
-                      // 👁 Show / Hide Icon
-                      GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            isPasswordHidden = !isPasswordHidden;
-                          });
-                        },
-                        child: Icon(
-                          isPasswordHidden
-                              ? Icons.visibility_off
-                              : Icons.visibility,
-                          color: Colors.grey,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
               ],
-              // Forget Password Text
-              Align(
-                alignment: Alignment.centerRight,
-                child: GestureDetector(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const ForgetPasswordPage(),
-                      ),
-                    );
-                  },
-                  child: const Text(
-                    "Forget Password?",
-                    style: TextStyle(
-                      color: Color(0xFFC3161C),
-                      fontWeight: FontWeight.bold,
-                      fontSize: 14,
-                    ),
-                  ),
-                ),
-              ),
 
               SizedBox(height: height * 0.03),
 
@@ -338,16 +223,14 @@ class _SignInPageState extends State<SignInPage> {
                   horizontal: width * 0.01,
                 ), // same as phone input
                 width: double.infinity,
-                height: height * 0.065,
+                height: height * 0.066,
                 child: AppButton(
-                  text: "Login",
+                  text: "Send Code",
                   onPressed: () {
-                    // Navigator.push(
-                    //   context,
-                    //   MaterialPageRoute(
-                    //     builder: (context) => const PersonalInformationPage(),
-                    //   ),
-                    // );
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const OtpPage()),
+                    );
                   },
                 ),
               ),
