@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:safari_app/features/auth/screens/getstart/get_start.dart';
+import 'package:safari_app/src/features/auth/screens/getstart/get_start.dart';
 
 void main() {
   runApp(const MyApp());
