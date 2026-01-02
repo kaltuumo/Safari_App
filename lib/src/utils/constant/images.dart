@@ -8,4 +8,5 @@ class AppImages {
   static const String facebookLogo = 'assets/images/facebook.png';
   static const String passwordIcon = 'assets/images/password_icon.png';
   static const String verifyImage = 'assets/images/verify_image.png';
+  static const String world = 'assets/images/world.png';
 }

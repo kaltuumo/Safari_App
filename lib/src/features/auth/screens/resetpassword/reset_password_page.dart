@@ -1,17 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:safari_app/src/features/auth/screens/resetpassword/reset_password_changed.dart';
 import 'package:safari_app/src/shared/app_button.dart';
 import 'package:safari_app/src/utils/constant/images.dart';
+import 'package:safari_app/src/utils/constant/colors.dart';
 
 class ResetPasswordPage extends StatefulWidget {
   const ResetPasswordPage({super.key});
 
   @override
-  State<ResetPasswordPage> createState() => _ResetPasswordPage();
+  State<ResetPasswordPage> createState() => _ResetPasswordPageState();
 }
 
-class _ResetPasswordPage extends State<ResetPasswordPage> {
-  bool isPasswordHidden = true; // ✅ Move to state
+class _ResetPasswordPageState extends State<ResetPasswordPage> {
+  bool isPasswordHidden = true;
+  bool isConfirmHidden = true;
+
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController confirmController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +24,7 @@ class _ResetPasswordPage extends State<ResetPasswordPage> {
     final height = MediaQuery.of(context).size.height;
 
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 242, 242, 242),
+      backgroundColor: const Color(0xFFF6F8FA),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
@@ -37,17 +42,19 @@ class _ResetPasswordPage extends State<ResetPasswordPage> {
                     fit: BoxFit.contain,
                   ),
                 ),
-
                 SizedBox(height: height * 0.03),
 
                 /// Title
                 Center(
-                  child: const Text(
+                  child: Text(
                     "Reset Password",
-                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                    style: TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                      color: AppColors.black,
+                    ),
                   ),
                 ),
-
                 SizedBox(height: height * 0.011),
 
                 /// Description
@@ -57,58 +64,8 @@ class _ResetPasswordPage extends State<ResetPasswordPage> {
                     "Please type something you'll remember",
                     style: TextStyle(
                       fontSize: width * 0.041,
-                      color: Colors.grey,
-
+                      color: AppColors.grey,
                       height: 1.3,
-                    ),
-                  ),
-                ),
-
-                SizedBox(height: height * 0.03),
-
-                /// Password Field
-                const Text(
-                  "New Password",
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
-                ),
-                SizedBox(height: height * 0.008),
-                TextField(
-                  obscureText: isPasswordHidden,
-                  decoration: InputDecoration(
-                    hintText: "Enter your password",
-                    filled: true,
-                    fillColor: Colors.white,
-                    contentPadding: EdgeInsets.symmetric(
-                      horizontal: width * 0.04,
-                    ),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12),
-                      borderSide: BorderSide(
-                        color: Colors.grey.withOpacity(0.3),
-                      ),
-                    ),
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12),
-                      borderSide: BorderSide(
-                        color: Colors.grey.withOpacity(0.3),
-                      ),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12),
-                      borderSide: BorderSide(color: Colors.red),
-                    ),
-                    suffixIcon: GestureDetector(
-                      onTap: () {
-                        setState(() {
-                          isPasswordHidden = !isPasswordHidden;
-                        });
-                      },
-                      child: Icon(
-                        isPasswordHidden
-                            ? Icons.visibility_off
-                            : Icons.visibility,
-                        color: Colors.grey,
-                      ),
                     ),
                   ),
                 ),
@@ -116,67 +73,51 @@ class _ResetPasswordPage extends State<ResetPasswordPage> {
                 SizedBox(height: height * 0.02),
 
                 /// Password Field
-                const Text(
-                  "Confirm New Password",
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+                Text(
+                  "New Password",
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w500,
+                    color: AppColors.black,
+                  ),
                 ),
                 SizedBox(height: height * 0.008),
-                TextField(
-                  obscureText: isPasswordHidden,
-                  decoration: InputDecoration(
-                    hintText: "Enter your password",
-                    filled: true,
-                    fillColor: Colors.white,
-                    contentPadding: EdgeInsets.symmetric(
-                      horizontal: width * 0.04,
-                    ),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12),
-                      borderSide: BorderSide(
-                        color: Colors.grey.withOpacity(0.3),
-                      ),
-                    ),
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12),
-                      borderSide: BorderSide(
-                        color: Colors.grey.withOpacity(0.3),
-                      ),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12),
-                      borderSide: BorderSide(color: Colors.orange),
-                    ),
-                    suffixIcon: GestureDetector(
-                      onTap: () {
-                        setState(() {
-                          isPasswordHidden = !isPasswordHidden;
-                        });
-                      },
-                      child: Icon(
-                        isPasswordHidden
-                            ? Icons.visibility_off
-                            : Icons.visibility,
-                        color: Colors.grey,
-                      ),
-                    ),
+                _buildPasswordField(
+                  width,
+                  controller: passwordController,
+                  isConfirm: false,
+                  hintText: "must be 8 characters",
+                ),
+
+                SizedBox(height: height * 0.02),
+
+                /// Confirm Password Field
+                Text(
+                  "Confirm New Password",
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w500,
+                    color: AppColors.black,
                   ),
+                ),
+                SizedBox(height: height * 0.008),
+                _buildPasswordField(
+                  width,
+                  controller: confirmController,
+                  isConfirm: true,
+                  hintText: "repeat password",
                 ),
 
                 SizedBox(height: height * 0.03),
 
-                /// Send Code Button
+                /// Submit Button
                 SizedBox(
                   width: double.infinity,
                   height: height * 0.061,
                   child: AppButton(
                     text: "Submit",
                     onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => ResetPasswordChanged(),
-                        ),
-                      );
+                      showSuccessBottomSheet(context);
                     },
                   ),
                 ),
@@ -190,6 +131,59 @@ class _ResetPasswordPage extends State<ResetPasswordPage> {
     );
   }
 
+  /// ================= PASSWORD FIELD =================
+  Widget _buildPasswordField(
+    double width, {
+    TextEditingController? controller,
+    bool isConfirm = false,
+    required String hintText, // ✅ pass custom hint
+  }) {
+    return TextField(
+      controller: controller,
+      obscureText: isConfirm ? isConfirmHidden : isPasswordHidden,
+      decoration: InputDecoration(
+        hintText: hintText,
+        hintStyle: TextStyle(color: AppColors.grey), // ✅ use passed hint text
+        filled: true,
+        fillColor: AppColors.white,
+        contentPadding: EdgeInsets.symmetric(
+          horizontal: width * 0.04,
+          vertical: 16,
+        ),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12),
+          borderSide: BorderSide(color: AppColors.grey.withOpacity(0.3)),
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12),
+          borderSide: BorderSide(color: AppColors.grey.withOpacity(0.3)),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12),
+          borderSide: BorderSide(color: AppColors.primaryColor),
+        ),
+        suffixIcon: GestureDetector(
+          onTap: () {
+            setState(() {
+              if (isConfirm) {
+                isConfirmHidden = !isConfirmHidden;
+              } else {
+                isPasswordHidden = !isPasswordHidden;
+              }
+            });
+          },
+          child: Icon(
+            (isConfirm ? isConfirmHidden : isPasswordHidden)
+                ? Icons.visibility_off
+                : Icons.visibility,
+            color: AppColors.grey,
+          ),
+        ),
+      ),
+    );
+  }
+
+  /// ================= SUCCESS BOTTOM SHEET =================
   void showSuccessBottomSheet(BuildContext context) {
     final size = MediaQuery.of(context).size;
     final height = size.height;
@@ -205,7 +199,7 @@ class _ResetPasswordPage extends State<ResetPasswordPage> {
             margin: EdgeInsets.symmetric(horizontal: width * 0.1),
             padding: EdgeInsets.all(width * 0.05),
             decoration: BoxDecoration(
-              color: Colors.white,
+              color: AppColors.white,
               borderRadius: BorderRadius.circular(20),
             ),
             child: Column(
@@ -215,9 +209,9 @@ class _ResetPasswordPage extends State<ResetPasswordPage> {
                   height: height * 0.11,
                   width: height * 0.11,
                   decoration: BoxDecoration(
-                    color: Colors.orange.withOpacity(0.12),
+                    color: AppColors.orange.withOpacity(0.12),
                     shape: BoxShape.circle,
-                    border: Border.all(color: Colors.orange, width: 1),
+                    border: Border.all(color: AppColors.orange, width: 1),
                   ),
                   child: Center(
                     child: Image.asset(
@@ -232,12 +226,12 @@ class _ResetPasswordPage extends State<ResetPasswordPage> {
                 SizedBox(height: height * 0.035),
 
                 /// Title
-                const Text(
-                  "Registration Successfully",
+                Text(
+                  "Password Reset Successfully",
                   style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
-                    color: Color(0xFFC3161C),
+                    color: AppColors.primaryColor,
                   ),
                   textAlign: TextAlign.center,
                 ),
@@ -245,12 +239,11 @@ class _ResetPasswordPage extends State<ResetPasswordPage> {
                 SizedBox(height: height * 0.015),
 
                 /// Subtitle
-                const Text(
-                  "Thank you for signing up. We're excited to have you with us. "
-                  "You can now login and start exploring all the features we have to offer.",
+                Text(
+                  "Your password has been updated successfully. You can now login with your new password.",
                   style: TextStyle(
                     fontSize: 13,
-                    color: Colors.grey,
+                    color: AppColors.grey,
                     height: 1.4,
                   ),
                   textAlign: TextAlign.center,
@@ -261,9 +254,9 @@ class _ResetPasswordPage extends State<ResetPasswordPage> {
                 /// Button
                 SizedBox(
                   width: double.infinity,
-                  height: height * 0.06, // responsive
+                  height: height * 0.06,
                   child: AppButton(
-                    text: "Welcome!",
+                    text: "Continue",
                     onPressed: () {
                       Navigator.pop(context);
                     },

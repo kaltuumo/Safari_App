@@ -3,6 +3,7 @@ import 'package:safari_app/src/features/auth/screens/googleaccount/google_accoun
 import 'package:safari_app/src/features/auth/screens/signin/signin_page.dart';
 import 'package:safari_app/src/shared/app_button.dart';
 import 'package:safari_app/src/utils/constant/images.dart';
+import 'package:safari_app/src/utils/constant/colors.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});
@@ -13,30 +14,31 @@ class SplashScreen extends StatelessWidget {
     final height = MediaQuery.of(context).size.height;
 
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: const Color(0xFFF6F8FA),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
-            padding: EdgeInsets.symmetric(
-              horizontal: width * 0.08,
-            ), // 8% of screen width
+            padding: EdgeInsets.symmetric(horizontal: width * 0.08),
             child: Column(
-              crossAxisAlignment:
-                  CrossAxisAlignment.start, // Text & buttons left aligned
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(height: height * 0.04),
 
                 /// Title
-                const Text(
+                Text(
                   "Get Started",
-                  style: TextStyle(fontSize: 26, fontWeight: FontWeight.bold),
+                  style: TextStyle(
+                    fontSize: 26,
+                    fontWeight: FontWeight.bold,
+                    color: AppColors.black,
+                  ),
                 ),
                 const SizedBox(height: 8),
 
                 /// Subtitle
-                const Text(
+                Text(
                   "Sign up using your email address or quickly log in with your social media account for a seamless experience.",
-                  style: TextStyle(fontSize: 14, color: Colors.grey),
+                  style: TextStyle(fontSize: 14, color: AppColors.grey),
                 ),
                 SizedBox(height: height * 0.01),
 
@@ -62,22 +64,22 @@ class SplashScreen extends StatelessWidget {
                     );
                   },
                   child: Container(
-                    margin: EdgeInsets.symmetric(
-                      horizontal: width * 0.05,
-                    ), // 5% ka mid ah screen width
-
-                    width: double.infinity, // Raac padding-ka Column
+                    margin: EdgeInsets.symmetric(horizontal: width * 0.05),
+                    width: double.infinity,
                     height: height * 0.057,
                     decoration: BoxDecoration(
-                      color: Colors.white,
+                      color: AppColors.white,
                       borderRadius: BorderRadius.circular(15),
-                      border: Border.all(color: Colors.red, width: 1),
+                      border: Border.all(
+                        color: AppColors.primaryColor,
+                        width: 1,
+                      ),
                     ),
                     alignment: Alignment.center,
-                    child: const Text(
+                    child: Text(
                       "Create Account",
                       style: TextStyle(
-                        color: Colors.red,
+                        color: AppColors.primaryColor,
                         fontSize: 16,
                         fontWeight: FontWeight.w600,
                       ),
@@ -89,7 +91,7 @@ class SplashScreen extends StatelessWidget {
                 /// Sign In Button
                 Container(
                   margin: EdgeInsets.symmetric(horizontal: width * 0.05),
-                  width: double.infinity, // Raac padding-ka Column
+                  width: double.infinity,
                   height: height * 0.055,
                   child: AppButton(
                     text: "Sign in",
@@ -106,30 +108,27 @@ class SplashScreen extends StatelessWidget {
                 SizedBox(height: height * 0.025),
 
                 /// Divider
-                SizedBox(
-                  width: width,
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: Container(
-                          height: 1,
-                          color: Colors.grey.withOpacity(0.3),
-                          margin: EdgeInsets.only(left: width * 0.05, right: 6),
-                        ),
+                Row(
+                  children: [
+                    Expanded(
+                      child: Container(
+                        height: 1,
+                        color: AppColors.grey.withOpacity(0.3),
+                        margin: EdgeInsets.only(left: width * 0.05, right: 6),
                       ),
-                      const Text(
-                        "Or continue with",
-                        style: TextStyle(color: Colors.grey),
+                    ),
+                    Text(
+                      "Or continue with",
+                      style: TextStyle(color: AppColors.grey),
+                    ),
+                    Expanded(
+                      child: Container(
+                        height: 1,
+                        color: AppColors.grey.withOpacity(0.3),
+                        margin: EdgeInsets.only(left: 6, right: width * 0.05),
                       ),
-                      Expanded(
-                        child: Container(
-                          height: 1,
-                          color: Colors.grey.withOpacity(0.3),
-                          margin: EdgeInsets.only(left: 6, right: width * 0.05),
-                        ),
-                      ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
                 SizedBox(height: height * 0.025),
 
@@ -173,16 +172,13 @@ class SplashScreen extends StatelessWidget {
     return GestureDetector(
       onTap: onPressed ?? () {},
       child: Container(
-        margin: EdgeInsets.symmetric(
-          horizontal: width * 0.05,
-        ), // 5% ka mid ah screen width
-
-        width: double.infinity, // Raac padding-ka Column
+        margin: EdgeInsets.symmetric(horizontal: width * 0.05),
+        width: double.infinity,
         height: height * 0.055,
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: AppColors.white,
           borderRadius: BorderRadius.circular(8),
-          border: Border.all(color: Colors.grey.withOpacity(0.3)),
+          border: Border.all(color: AppColors.grey.withOpacity(0.3)),
         ),
         padding: EdgeInsets.symmetric(horizontal: width * 0.03),
         child: Row(
@@ -192,8 +188,8 @@ class SplashScreen extends StatelessWidget {
             SizedBox(width: width * 0.025),
             Text(
               text,
-              style: const TextStyle(
-                color: Colors.black,
+              style: TextStyle(
+                color: AppColors.black,
                 fontSize: 15,
                 fontWeight: FontWeight.w500,
               ),

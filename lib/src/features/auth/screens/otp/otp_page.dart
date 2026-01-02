@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:safari_app/src/features/auth/screens/profileinformation/profile_information_page.dart';
 import 'package:safari_app/src/shared/app_button.dart';
+import 'package:safari_app/src/utils/constant/colors.dart';
 
 class OtpPage extends StatefulWidget {
   const OtpPage({super.key});
@@ -39,7 +40,7 @@ class _OtpPageState extends State<OtpPage> {
     final height = MediaQuery.of(context).size.height;
 
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: const Color(0xFFF6F8FA),
       body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.symmetric(
@@ -49,18 +50,23 @@ class _OtpPageState extends State<OtpPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Qoraalka sare
+              // Title
               Text(
                 "Verify Your Phone Number",
                 style: TextStyle(
                   fontSize: width * 0.07,
                   fontWeight: FontWeight.bold,
+                  color: AppColors.black, // ✅ Use AppColors
                 ),
               ),
               const SizedBox(height: 10),
               const Text(
                 "We have sent an SMS with an Activation code \nto your phone +252*******52",
-                style: TextStyle(color: Colors.grey, fontSize: 14, height: 1.5),
+                style: TextStyle(
+                  color: AppColors.grey, // ✅ Use AppColors
+                  fontSize: 14,
+                  height: 1.5,
+                ),
               ),
               SizedBox(height: height * 0.06),
 
@@ -79,7 +85,7 @@ class _OtpPageState extends State<OtpPage> {
                       style: const TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
-                        color: Colors.black,
+                        color: AppColors.black, // ✅ Use AppColors
                       ),
                       maxLength: 1,
                       inputFormatters: [FilteringTextInputFormatter.digitsOnly],
@@ -87,16 +93,16 @@ class _OtpPageState extends State<OtpPage> {
                         counterText: "",
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10),
-                          borderSide: const BorderSide(color: Colors.grey),
+                          borderSide: const BorderSide(color: AppColors.grey),
                         ),
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10),
-                          borderSide: const BorderSide(color: Colors.grey),
+                          borderSide: const BorderSide(color: AppColors.grey),
                         ),
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10),
                           borderSide: const BorderSide(
-                            color: Colors.orange,
+                            color: AppColors.primaryColor, // ✅ Use AppColors
                             width: 2,
                           ),
                         ),
@@ -125,14 +131,14 @@ class _OtpPageState extends State<OtpPage> {
                 children: [
                   const Text(
                     "I didn't receive the code  ",
-                    style: TextStyle(color: Colors.grey),
+                    style: TextStyle(color: AppColors.grey), // ✅ Use AppColors
                   ),
                   GestureDetector(
                     onTap: () {},
                     child: const Text(
                       "Resend",
                       style: TextStyle(
-                        color: Color(0xFFC3161C),
+                        color: AppColors.primaryColor, // ✅ Use AppColors
                         fontWeight: FontWeight.bold,
                       ),
                     ),

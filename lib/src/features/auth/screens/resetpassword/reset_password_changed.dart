@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:safari_app/src/features/auth/screens/signin/signin_page.dart';
 import 'package:safari_app/src/shared/app_button.dart';
 import 'package:safari_app/src/utils/constant/images.dart';
+import 'package:safari_app/src/utils/constant/colors.dart';
 
 class ResetPasswordChanged extends StatefulWidget {
   const ResetPasswordChanged({super.key});
@@ -19,7 +20,7 @@ class _ResetPasswordChanged extends State<ResetPasswordChanged> {
     final height = MediaQuery.of(context).size.height;
 
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 242, 242, 242),
+      backgroundColor: const Color(0xFFF6F8FA),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
@@ -43,9 +44,13 @@ class _ResetPasswordChanged extends State<ResetPasswordChanged> {
 
                 /// Title
                 Center(
-                  child: const Text(
+                  child: Text(
                     "Password Changed",
-                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                    style: TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                      color: AppColors.black, // ✅ Use AppColors
+                    ),
                   ),
                 ),
 
@@ -55,21 +60,21 @@ class _ResetPasswordChanged extends State<ResetPasswordChanged> {
                 Text(
                   "Your password has been changed successfully",
                   style: TextStyle(
-                    fontSize: width * 0.040,
-                    color: Colors.grey,
-
+                    fontSize: width * 0.04,
+                    color: AppColors.grey, // ✅ Use AppColors
                     height: 1.3,
                   ),
+                  textAlign: TextAlign.center,
                 ),
 
                 SizedBox(height: height * 0.03),
 
-                /// Send Code Button
+                /// Back to login Button
                 SizedBox(
                   width: double.infinity,
                   height: height * 0.063,
                   child: AppButton(
-                    text: "Back to login",
+                    text: "Back to Login",
                     onPressed: () {
                       Navigator.push(
                         context,
@@ -90,6 +95,7 @@ class _ResetPasswordChanged extends State<ResetPasswordChanged> {
     );
   }
 
+  /// Optional success bottom sheet
   void showSuccessBottomSheet(BuildContext context) {
     final size = MediaQuery.of(context).size;
     final height = size.height;
@@ -105,19 +111,20 @@ class _ResetPasswordChanged extends State<ResetPasswordChanged> {
             margin: EdgeInsets.symmetric(horizontal: width * 0.1),
             padding: EdgeInsets.all(width * 0.05),
             decoration: BoxDecoration(
-              color: Colors.white,
+              color: AppColors.white, // ✅ Use AppColors
               borderRadius: BorderRadius.circular(20),
             ),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
+                // Icon Circle
                 Container(
                   height: height * 0.11,
                   width: height * 0.11,
                   decoration: BoxDecoration(
-                    color: Colors.orange.withOpacity(0.12),
+                    color: AppColors.orange.withOpacity(0.12),
                     shape: BoxShape.circle,
-                    border: Border.all(color: Colors.orange, width: 1),
+                    border: Border.all(color: AppColors.orange, width: 1),
                   ),
                   child: Center(
                     child: Image.asset(
@@ -132,12 +139,12 @@ class _ResetPasswordChanged extends State<ResetPasswordChanged> {
                 SizedBox(height: height * 0.035),
 
                 /// Title
-                const Text(
-                  "Registration Successfully",
+                Text(
+                  "Registration Successful",
                   style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
-                    color: Color(0xFFC3161C),
+                    color: AppColors.primaryColor, // ✅ Use AppColors
                   ),
                   textAlign: TextAlign.center,
                 ),
@@ -145,12 +152,12 @@ class _ResetPasswordChanged extends State<ResetPasswordChanged> {
                 SizedBox(height: height * 0.015),
 
                 /// Subtitle
-                const Text(
+                Text(
                   "Thank you for signing up. We're excited to have you with us. "
                   "You can now login and start exploring all the features we have to offer.",
                   style: TextStyle(
                     fontSize: 13,
-                    color: Colors.grey,
+                    color: AppColors.grey, // ✅ Use AppColors
                     height: 1.4,
                   ),
                   textAlign: TextAlign.center,
@@ -161,7 +168,7 @@ class _ResetPasswordChanged extends State<ResetPasswordChanged> {
                 /// Button
                 SizedBox(
                   width: double.infinity,
-                  height: height * 0.06, // responsive
+                  height: height * 0.06,
                   child: AppButton(
                     text: "Welcome!",
                     onPressed: () {

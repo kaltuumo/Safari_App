@@ -4,6 +4,7 @@ import 'package:safari_app/src/features/auth/screens/googleaccount/google_accoun
 import 'package:safari_app/src/shared/app_button.dart';
 import 'package:safari_app/src/shared/custom_social_button.dart';
 import 'package:safari_app/src/utils/constant/images.dart';
+import 'package:safari_app/src/utils/constant/colors.dart';
 
 class ForgetPasswordPage extends StatefulWidget {
   const ForgetPasswordPage({super.key});
@@ -30,10 +31,10 @@ class _ForgetPasswordPage extends State<ForgetPasswordPage> {
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
-    const selectedColor = Color(0xFFC3161C);
+    const selectedColor = AppColors.primaryColor;
 
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: const Color(0xFFF6F8FA),
       body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.symmetric(
@@ -48,6 +49,7 @@ class _ForgetPasswordPage extends State<ForgetPasswordPage> {
                 style: TextStyle(
                   fontSize: width * 0.07,
                   fontWeight: FontWeight.bold,
+                  color: AppColors.black,
                 ),
               ),
               const SizedBox(height: 10),
@@ -56,7 +58,7 @@ class _ForgetPasswordPage extends State<ForgetPasswordPage> {
                     ? "Don't worry! Please enter your phone number associated with your account"
                     : "Don't worry! Please enter the email address associated with your account",
                 style: const TextStyle(
-                  color: Colors.grey,
+                  color: AppColors.grey,
                   fontSize: 14,
                   height: 1.5,
                 ),
@@ -84,7 +86,7 @@ class _ForgetPasswordPage extends State<ForgetPasswordPage> {
                               style: TextStyle(
                                 color: isPhoneSelected
                                     ? selectedColor
-                                    : Colors.grey,
+                                    : AppColors.grey,
                                 fontSize: 16,
                                 fontWeight: FontWeight.bold,
                               ),
@@ -118,7 +120,7 @@ class _ForgetPasswordPage extends State<ForgetPasswordPage> {
                               style: TextStyle(
                                 color: !isPhoneSelected
                                     ? selectedColor
-                                    : Colors.grey,
+                                    : AppColors.grey,
                                 fontSize: 16,
                                 fontWeight: FontWeight.bold,
                               ),
@@ -151,21 +153,19 @@ class _ForgetPasswordPage extends State<ForgetPasswordPage> {
                   height: height * 0.061,
                   padding: EdgeInsets.symmetric(horizontal: width * 0.04),
                   decoration: BoxDecoration(
-                    color: Colors.white,
-                    border: Border.all(color: Colors.grey.withOpacity(0.2)),
+                    color: AppColors.white,
+                    border: Border.all(color: AppColors.grey.withOpacity(0.2)),
                     borderRadius: BorderRadius.circular(12),
                   ),
                   child: Row(
                     children: [
                       const Text("🇸🇴 +252", style: TextStyle(fontSize: 16)),
-                      // Divider
                       Container(
                         height: 24,
                         width: 1,
-                        color: Colors.grey.withOpacity(0.3),
+                        color: AppColors.grey.withOpacity(0.3),
                         margin: const EdgeInsets.symmetric(horizontal: 8),
                       ),
-                      // SizedBox(width: width * 0.025),
                       Expanded(
                         child: TextField(
                           controller: phoneController,
@@ -183,7 +183,7 @@ class _ForgetPasswordPage extends State<ForgetPasswordPage> {
                 ),
               ] else ...[
                 Text(
-                  "Email ",
+                  "Email",
                   style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
                 ),
                 Container(
@@ -191,18 +191,17 @@ class _ForgetPasswordPage extends State<ForgetPasswordPage> {
                   width: double.infinity,
                   height: height * 0.061,
                   decoration: BoxDecoration(
-                    color: Colors.white,
-                    border: Border.all(color: Colors.grey.withOpacity(0.3)),
+                    color: AppColors.white,
+                    border: Border.all(color: AppColors.grey.withOpacity(0.3)),
                     borderRadius: BorderRadius.circular(12),
                   ),
-                  // padding: EdgeInsets.symmetric(horizontal: width * 0.04),
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       SizedBox(width: width * 0.045),
                       const Expanded(
                         child: TextField(
-                          keyboardType: TextInputType.number,
+                          keyboardType: TextInputType.emailAddress,
                           decoration: InputDecoration(
                             hintText: "Haqabtire@gmail.com",
                             border: InputBorder.none,
@@ -219,9 +218,7 @@ class _ForgetPasswordPage extends State<ForgetPasswordPage> {
               SizedBox(height: height * 0.03),
 
               Container(
-                margin: EdgeInsets.symmetric(
-                  horizontal: width * 0.01,
-                ), // same as phone input
+                margin: EdgeInsets.symmetric(horizontal: width * 0.01),
                 width: double.infinity,
                 height: height * 0.066,
                 child: AppButton(
@@ -231,7 +228,7 @@ class _ForgetPasswordPage extends State<ForgetPasswordPage> {
                       context,
                       MaterialPageRoute(
                         builder: (context) => ForgetPassworsVerify(
-                          isPhoneSelected: isPhoneSelected, // ✅ gudbin sax ah
+                          isPhoneSelected: isPhoneSelected,
                         ),
                       ),
                     );
@@ -248,18 +245,18 @@ class _ForgetPasswordPage extends State<ForgetPasswordPage> {
                     Expanded(
                       child: Container(
                         height: 1,
-                        color: Colors.grey.withOpacity(0.3),
+                        color: AppColors.grey.withOpacity(0.3),
                         margin: EdgeInsets.only(left: width * 0.05, right: 6),
                       ),
                     ),
                     const Text(
                       "Or continue with",
-                      style: TextStyle(color: Colors.grey),
+                      style: TextStyle(color: AppColors.grey),
                     ),
                     Expanded(
                       child: Container(
                         height: 1,
-                        color: Colors.grey.withOpacity(0.3),
+                        color: AppColors.grey.withOpacity(0.3),
                         margin: EdgeInsets.only(left: 6, right: width * 0.05),
                       ),
                     ),
@@ -288,7 +285,7 @@ class _ForgetPasswordPage extends State<ForgetPasswordPage> {
                       AppImages.appleLogo,
                       width: width * 0.06,
                       height: width * 0.06,
-                      fit: BoxFit.contain, // 👈 Important
+                      fit: BoxFit.contain,
                     ),
                     onPressed: () {},
                   ),
@@ -299,7 +296,7 @@ class _ForgetPasswordPage extends State<ForgetPasswordPage> {
                       AppImages.facebookLogo,
                       width: width * 0.06,
                       height: width * 0.06,
-                      fit: BoxFit.contain, // 👈 Important
+                      fit: BoxFit.contain,
                     ),
                     onPressed: () {},
                   ),
@@ -313,11 +310,10 @@ class _ForgetPasswordPage extends State<ForgetPasswordPage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   const Text(
-                    "don,t have an account?",
-                    style: TextStyle(color: Colors.grey),
+                    "Don't have an account?",
+                    style: TextStyle(color: AppColors.grey),
                   ),
                   SizedBox(width: width * 0.01),
-
                   GestureDetector(
                     onTap: () {
                       Navigator.push(
@@ -330,7 +326,7 @@ class _ForgetPasswordPage extends State<ForgetPasswordPage> {
                     child: const Text(
                       "Register",
                       style: TextStyle(
-                        color: Color(0xFFC3161C),
+                        color: AppColors.primaryColor,
                         fontWeight: FontWeight.bold,
                       ),
                     ),

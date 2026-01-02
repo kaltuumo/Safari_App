@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:safari_app/src/features/auth/screens/createpassword/create_new_password.dart';
 import 'package:safari_app/src/shared/app_button.dart';
+import 'package:safari_app/src/utils/constant/colors.dart';
 
 class ProfileInformationPage extends StatefulWidget {
   const ProfileInformationPage({super.key});
@@ -11,18 +12,19 @@ class ProfileInformationPage extends StatefulWidget {
 }
 
 class _ProfileInformationPage extends State<ProfileInformationPage> {
+  String? selectedGender;
+  String? selectedLocation;
+
+  final List<String> genders = ["Male", "Female", "Other"];
+  final List<String> locations = ["Mogadishu", "Nairobi"];
+
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
 
-    String? selectedGender;
-    String? selectedLocation;
-    final List<String> genders = ["Male", "Female", "Other"];
-    final List<String> locations = ["Mogadishu", "Nairobi"];
-
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: const Color(0xFFF6F8FA),
       body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.symmetric(
@@ -32,45 +34,54 @@ class _ProfileInformationPage extends State<ProfileInformationPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Qoraalka sare
+              // Title
               Text(
                 "Profile Information",
                 style: TextStyle(
                   fontSize: width * 0.07,
                   fontWeight: FontWeight.bold,
+                  color: AppColors.black, // ✅ Use AppColors
                 ),
               ),
               const SizedBox(height: 10),
               const Text(
-                "Please Complete the registration from first",
-                style: TextStyle(color: Colors.grey, fontSize: 14, height: 1.5),
+                "Please complete the registration form first",
+                style: TextStyle(
+                  color: AppColors.grey, // ✅ Use AppColors
+                  fontSize: 14,
+                  height: 1.5,
+                ),
               ),
 
               SizedBox(height: height * 0.03),
+
               // Full Name
               Text(
                 "Full Name",
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w500,
+                  color: AppColors.black,
+                ),
               ),
               Container(
                 margin: EdgeInsets.symmetric(vertical: height * 0.015),
                 width: double.infinity,
                 height: height * 0.061,
                 decoration: BoxDecoration(
-                  color: Colors.white, // ka duwan white page background
-                  border: Border.all(color: Colors.grey.withOpacity(0.3)),
+                  color: AppColors.white,
+                  border: Border.all(color: AppColors.grey.withOpacity(0.3)),
                   borderRadius: BorderRadius.circular(12),
                 ),
-                // padding: EdgeInsets.symmetric(horizontal: width * 0.04),
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     SizedBox(width: width * 0.025),
                     const Expanded(
                       child: TextField(
-                        keyboardType: TextInputType.number,
+                        keyboardType: TextInputType.text,
                         decoration: InputDecoration(
-                          hintText: "Enter Fullname",
+                          hintText: "Enter Full Name",
                           border: InputBorder.none,
                           isDense: true,
                           contentPadding: EdgeInsets.zero,
@@ -84,7 +95,11 @@ class _ProfileInformationPage extends State<ProfileInformationPage> {
               // Phone Number
               Text(
                 "Phone Number",
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w500,
+                  color: AppColors.black,
+                ),
               ),
               Container(
                 margin: EdgeInsets.symmetric(vertical: height * 0.015),
@@ -92,35 +107,30 @@ class _ProfileInformationPage extends State<ProfileInformationPage> {
                 height: height * 0.061,
                 padding: EdgeInsets.symmetric(horizontal: width * 0.04),
                 decoration: BoxDecoration(
-                  color: Colors.white,
-                  border: Border.all(color: Colors.grey.withOpacity(0.3)),
+                  color: AppColors.white,
+                  border: Border.all(color: AppColors.grey.withOpacity(0.3)),
                   borderRadius: BorderRadius.circular(12),
                 ),
                 child: Row(
                   children: [
-                    // Country code
-                    Container(
-                      padding: const EdgeInsets.only(right: 8),
-                      child: const Text(
-                        "🇸🇴 +252",
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w500,
-                        ),
+                    const Text(
+                      "🇸🇴 +252",
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w500,
+                        color: AppColors.black,
                       ),
                     ),
-                    // Divider
                     Container(
                       height: 24,
                       width: 1,
-                      color: Colors.grey.withOpacity(0.3),
+                      color: AppColors.grey.withOpacity(0.3),
                       margin: const EdgeInsets.symmetric(horizontal: 8),
                     ),
-                    // Phone input
                     Expanded(
-                      child: TextField(
+                      child: const TextField(
                         keyboardType: TextInputType.number,
-                        decoration: const InputDecoration(
+                        decoration: InputDecoration(
                           hintText: "Enter your phone number",
                           border: InputBorder.none,
                           isDense: true,
@@ -132,30 +142,32 @@ class _ProfileInformationPage extends State<ProfileInformationPage> {
                 ),
               ),
 
-              // Email Address
+              // Email
               Text(
                 "Email Address",
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w500,
+                  color: AppColors.black,
+                ),
               ),
               Container(
                 margin: EdgeInsets.symmetric(vertical: height * 0.015),
                 width: double.infinity,
                 height: height * 0.061,
                 decoration: BoxDecoration(
-                  color: Colors.white,
-                  border: Border.all(color: Colors.grey.withOpacity(0.3)),
+                  color: AppColors.white,
+                  border: Border.all(color: AppColors.grey.withOpacity(0.3)),
                   borderRadius: BorderRadius.circular(12),
                 ),
-                // padding: EdgeInsets.symmetric(horizontal: width * 0.04),
                 child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     SizedBox(width: width * 0.025),
                     const Expanded(
                       child: TextField(
-                        keyboardType: TextInputType.number,
+                        keyboardType: TextInputType.emailAddress,
                         decoration: InputDecoration(
-                          hintText: "Enter Email Adress",
+                          hintText: "Enter Email Address",
                           border: InputBorder.none,
                           isDense: true,
                           contentPadding: EdgeInsets.zero,
@@ -166,11 +178,14 @@ class _ProfileInformationPage extends State<ProfileInformationPage> {
                 ),
               ),
 
-              // Location
               // Location Dropdown
               Text(
                 "Location",
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w500,
+                  color: AppColors.black,
+                ),
               ),
               Container(
                 margin: EdgeInsets.symmetric(vertical: height * 0.015),
@@ -178,8 +193,8 @@ class _ProfileInformationPage extends State<ProfileInformationPage> {
                 height: height * 0.061,
                 padding: EdgeInsets.symmetric(horizontal: width * 0.04),
                 decoration: BoxDecoration(
-                  color: Colors.white,
-                  border: Border.all(color: Colors.grey.withOpacity(0.3)),
+                  color: AppColors.white,
+                  border: Border.all(color: AppColors.grey.withOpacity(0.3)),
                   borderRadius: BorderRadius.circular(12),
                 ),
                 child: DropdownButtonHideUnderline(
@@ -202,27 +217,35 @@ class _ProfileInformationPage extends State<ProfileInformationPage> {
                 ),
               ),
 
+              // Gender Dropdown
               Text(
                 "Gender",
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w500,
+                  color: AppColors.black,
+                ),
               ),
-              // Gender Dropdown
               Container(
                 margin: EdgeInsets.symmetric(vertical: height * 0.015),
                 width: double.infinity,
                 height: height * 0.061,
                 padding: EdgeInsets.symmetric(horizontal: width * 0.04),
                 decoration: BoxDecoration(
-                  color: Colors.white,
-                  border: Border.all(color: Colors.grey.withOpacity(0.3)),
+                  color: AppColors.white,
+                  border: Border.all(color: AppColors.grey.withOpacity(0.3)),
                   borderRadius: BorderRadius.circular(12),
                 ),
                 child: DropdownButtonHideUnderline(
                   child: DropdownButton<String>(
-                    value: selectedGender,
                     hint: const Text("Select Gender"),
+                    value: selectedGender,
                     isExpanded: true,
-                    onChanged: (_) {},
+                    onChanged: (value) {
+                      setState(() {
+                        selectedGender = value;
+                      });
+                    },
                     items: genders.map((gender) {
                       return DropdownMenuItem<String>(
                         value: gender,
@@ -234,10 +257,10 @@ class _ProfileInformationPage extends State<ProfileInformationPage> {
               ),
 
               SizedBox(height: height * 0.02),
+
+              // Save Button
               Container(
-                margin: EdgeInsets.symmetric(
-                  horizontal: width * 0.01,
-                ), // same as phone input
+                margin: EdgeInsets.symmetric(horizontal: width * 0.01),
                 width: double.infinity,
                 height: height * 0.061,
                 child: AppButton(

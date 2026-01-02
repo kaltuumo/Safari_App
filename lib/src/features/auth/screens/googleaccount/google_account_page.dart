@@ -3,6 +3,7 @@ import 'package:safari_app/src/features/auth/screens/otp/otp_page.dart';
 import 'package:safari_app/src/features/auth/screens/signin/signin_page.dart';
 import 'package:safari_app/src/shared/app_button.dart';
 import 'package:safari_app/src/shared/custom_social_button.dart';
+import 'package:safari_app/src/utils/constant/colors.dart';
 import 'package:safari_app/src/utils/constant/images.dart';
 
 class GoogleAccountPage extends StatefulWidget {
@@ -21,7 +22,7 @@ class _GoogleAccountPageState extends State<GoogleAccountPage> {
     final height = MediaQuery.of(context).size.height;
 
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: const Color(0xFFF6F8FA),
 
       body: SafeArea(
         child: SingleChildScrollView(
@@ -39,7 +40,7 @@ class _GoogleAccountPageState extends State<GoogleAccountPage> {
                 const Text(
                   "Join Us Today!",
                   style: TextStyle(
-                    color: Colors.black,
+                    color: AppColors.black, // ✅ Use AppColors
                     fontWeight: FontWeight.bold,
                     fontSize: 20,
                     height: 1.5,
@@ -51,7 +52,7 @@ class _GoogleAccountPageState extends State<GoogleAccountPage> {
                 const Text(
                   "Create Account in a Few Simple Steps and Unlock Access to Exclusive Features.",
                   style: TextStyle(
-                    color: Colors.grey,
+                    color: AppColors.grey, // ✅ Use AppColors
                     fontSize: 16,
                     height: 1.5,
                   ),
@@ -62,7 +63,11 @@ class _GoogleAccountPageState extends State<GoogleAccountPage> {
                 /// Phone label
                 const Text(
                   "Phone Number",
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w500,
+                    color: AppColors.black, // ✅ Use AppColors
+                  ),
                 ),
 
                 SizedBox(height: height * 0.01),
@@ -73,20 +78,20 @@ class _GoogleAccountPageState extends State<GoogleAccountPage> {
                   height: height * 0.061,
                   padding: EdgeInsets.symmetric(horizontal: width * 0.04),
                   decoration: BoxDecoration(
-                    border: Border.all(color: Colors.grey.withOpacity(0.3)),
+                    border: Border.all(color: AppColors.grey.withOpacity(0.3)),
                     borderRadius: BorderRadius.circular(12),
                   ),
                   child: Row(
                     children: [
                       const Text(
                         "🇸🇴 +252",
-                        style: TextStyle(color: Colors.grey, fontSize: 16),
+                        style: TextStyle(color: AppColors.grey, fontSize: 16),
                       ),
                       Container(
                         height: 24,
                         width: 1,
                         margin: const EdgeInsets.symmetric(horizontal: 8),
-                        color: Colors.grey.withOpacity(0.3),
+                        color: AppColors.grey.withOpacity(0.3),
                       ),
                       Expanded(
                         child: TextField(
@@ -94,7 +99,7 @@ class _GoogleAccountPageState extends State<GoogleAccountPage> {
                           keyboardType: TextInputType.number,
                           decoration: const InputDecoration(
                             hintText: "Enter your number",
-                            hintStyle: TextStyle(color: Colors.grey),
+                            hintStyle: TextStyle(color: AppColors.grey),
                             border: InputBorder.none,
                             isDense: true,
                           ),
@@ -129,20 +134,20 @@ class _GoogleAccountPageState extends State<GoogleAccountPage> {
                     Expanded(
                       child: Container(
                         height: 1,
-                        color: Colors.grey.withOpacity(0.3),
+                        color: AppColors.grey.withOpacity(0.3),
                       ),
                     ),
                     const Padding(
                       padding: EdgeInsets.symmetric(horizontal: 10),
                       child: Text(
                         "Or continue with",
-                        style: TextStyle(color: Colors.grey),
+                        style: TextStyle(color: AppColors.grey),
                       ),
                     ),
                     Expanded(
                       child: Container(
                         height: 1,
-                        color: Colors.grey.withOpacity(0.3),
+                        color: AppColors.grey.withOpacity(0.3),
                       ),
                     ),
                   ],
@@ -193,7 +198,7 @@ class _GoogleAccountPageState extends State<GoogleAccountPage> {
                   children: [
                     const Text(
                       "Already have an account? ",
-                      style: TextStyle(color: Colors.grey),
+                      style: TextStyle(color: AppColors.grey),
                     ),
                     GestureDetector(
                       onTap: () {
@@ -207,7 +212,7 @@ class _GoogleAccountPageState extends State<GoogleAccountPage> {
                       child: const Text(
                         "Sign In",
                         style: TextStyle(
-                          color: Color(0xFFC3161C),
+                          color: AppColors.primaryColor, // ✅ Use AppColors
                           fontWeight: FontWeight.bold,
                         ),
                       ),

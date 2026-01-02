@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:safari_app/src/features/auth/screens/splash/splash_screen.dart';
+import 'package:safari_app/src/utils/constant/colors.dart';
 import 'package:safari_app/src/utils/constant/images.dart';
 
 class GetStartedPage extends StatelessWidget {
@@ -22,7 +23,7 @@ class GetStartedPage extends StatelessWidget {
         child: Container(
           width: width,
           height: height,
-          color: const Color(0xFFC3161C),
+          color: AppColors.primaryColor, // ✅ Use AppColors
           child: Stack(
             children: [
               Center(
@@ -43,7 +44,7 @@ class GetStartedPage extends StatelessWidget {
                   "Made with ❤️ by Duuliye.con",
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                    color: Colors.white,
+                    color: AppColors.white, // ✅ Use AppColors
                     fontSize: width * 0.035,
                   ),
                 ),

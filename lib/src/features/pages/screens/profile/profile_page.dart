@@ -1,5 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:safari_app/src/features/auth/screens/profileinformation/profile_information_page.dart';
+import 'package:safari_app/src/features/pages/screens/profile/accountSecurity/account_security_page.dart';
+import 'package:safari_app/src/features/pages/screens/profile/notification/push_notafication_page.dart';
+import 'package:safari_app/src/features/pages/screens/profile/privacy&policy/privacy_policy_page.dart';
+import 'package:safari_app/src/features/pages/screens/support/support_page.dart';
+import 'package:safari_app/src/utils/constant/colors.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
@@ -14,12 +20,12 @@ class ProfilePage extends StatelessWidget {
       body: SafeArea(
         child: Padding(
           padding: EdgeInsets.symmetric(
-            horizontal: width * 0.05,
-            vertical: height * 0.02,
+            horizontal: width * 0.09,
+            vertical: height * 0.08,
           ),
           child: Column(
             children: [
-              // Scrollable content
+              /// Scrollable content
               Expanded(
                 child: SingleChildScrollView(
                   child: Column(
@@ -43,13 +49,14 @@ class ProfilePage extends StatelessWidget {
                                 style: TextStyle(
                                   fontSize: 18,
                                   fontWeight: FontWeight.bold,
+                                  color: AppColors.black,
                                 ),
                               ),
                               SizedBox(height: 4),
                               Text(
                                 "+252 615764252",
                                 style: TextStyle(
-                                  color: Colors.grey,
+                                  color: AppColors.grey,
                                   fontSize: 14,
                                 ),
                               ),
@@ -61,11 +68,40 @@ class ProfilePage extends StatelessWidget {
                       SizedBox(height: height * 0.04),
 
                       /// ================= PERSONAL INFO =================
-                      _sectionTitle("Personal Info"),
-                      _settingItem(icon: Iconsax.user, title: "Personal Data"),
+                      _sectionTitle(
+                        "Personal Info",
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => ProfileInformationPage(),
+                            ),
+                          );
+                        },
+                      ),
+                      _settingItem(
+                        icon: Iconsax.user,
+                        title: "Personal Data",
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => ProfileInformationPage(),
+                            ),
+                          );
+                        },
+                      ),
                       _settingItem(
                         icon: Iconsax.lock,
                         title: "Account Security",
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => AccountSecurityPage(),
+                            ),
+                          );
+                        },
                       ),
 
                       SizedBox(height: height * 0.025),
@@ -76,6 +112,14 @@ class ProfilePage extends StatelessWidget {
                       _settingItem(
                         icon: Iconsax.notification,
                         title: "Push Notification",
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => PushNotaficationPage(),
+                            ),
+                          );
+                        },
                       ),
                       _settingItem(
                         icon: Iconsax.trash,
@@ -90,10 +134,26 @@ class ProfilePage extends StatelessWidget {
                       _settingItem(
                         icon: Iconsax.message_question,
                         title: "Support Center",
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => SupportPage(),
+                            ),
+                          );
+                        },
                       ),
                       _settingItem(
                         icon: Iconsax.shield_tick,
                         title: "Privacy & Policy",
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => PrivacyPolicyPage(),
+                            ),
+                          );
+                        },
                       ),
                       _settingItem(
                         icon: Iconsax.info_circle,
@@ -112,17 +172,17 @@ class ProfilePage extends StatelessWidget {
                 padding: EdgeInsets.symmetric(vertical: height * 0.018),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(14),
-                  border: Border.all(color: Colors.orange),
+                  border: Border.all(color: AppColors.secondaryColor),
                 ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: const [
-                    Icon(Iconsax.logout, color: Colors.orange),
+                    Icon(Iconsax.logout, color: AppColors.secondaryColor),
                     SizedBox(width: 10),
                     Text(
                       "Logout",
                       style: TextStyle(
-                        color: Colors.orange,
+                        color: AppColors.primaryColor,
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
                       ),
@@ -139,15 +199,18 @@ class ProfilePage extends StatelessWidget {
   }
 
   /// ================= SECTION TITLE =================
-  Widget _sectionTitle(String title) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 10),
-      child: Text(
-        title,
-        style: const TextStyle(
-          color: Colors.grey,
-          fontSize: 13,
-          fontWeight: FontWeight.w600,
+  Widget _sectionTitle(String title, {VoidCallback? onTap}) {
+    return InkWell(
+      onTap: onTap,
+      child: Padding(
+        padding: const EdgeInsets.only(bottom: 10),
+        child: Text(
+          title,
+          style: const TextStyle(
+            color: AppColors.grey,
+            fontSize: 13,
+            fontWeight: FontWeight.w600,
+          ),
         ),
       ),
     );
@@ -158,32 +221,40 @@ class ProfilePage extends StatelessWidget {
     required IconData icon,
     required String title,
     String? trailingText,
+    VoidCallback? onTap,
   }) {
-    return Container(
-      margin: const EdgeInsets.only(bottom: 10),
-      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 14),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(14),
-      ),
-      child: Row(
-        children: [
-          Icon(icon, color: Colors.grey),
-          const SizedBox(width: 14),
-          Expanded(
-            child: Text(
-              title,
-              style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w500),
+    return InkWell(
+      onTap: onTap,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 6.0),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Icon(icon, color: AppColors.grey, size: 22),
+            const SizedBox(width: 16),
+            Expanded(
+              child: Text(
+                title,
+                style: const TextStyle(
+                  fontSize: 15,
+                  fontWeight: FontWeight.w500,
+                  color: AppColors.black,
+                ),
+              ),
             ),
-          ),
-          if (trailingText != null)
-            Text(
-              trailingText,
-              style: const TextStyle(color: Colors.grey, fontSize: 13),
+            if (trailingText != null)
+              Text(
+                trailingText,
+                style: const TextStyle(color: AppColors.grey, fontSize: 13),
+              ),
+            const SizedBox(width: 6),
+            const Icon(
+              Icons.arrow_forward_ios,
+              size: 14,
+              color: AppColors.grey,
             ),
-          const SizedBox(width: 6),
-          const Icon(Icons.arrow_forward_ios, size: 14, color: Colors.grey),
-        ],
+          ],
+        ),
       ),
     );
   }

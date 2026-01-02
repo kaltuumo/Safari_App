@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:safari_app/src/features/auth/screens/resetpassword/reset_password_page.dart';
 import 'package:safari_app/src/shared/app_button.dart';
+import 'package:safari_app/src/utils/constant/colors.dart';
 
 class ForgetPassworsVerify extends StatefulWidget {
   final bool isPhoneSelected; // ✅ value ka imanaya page hore
@@ -41,7 +42,7 @@ class _ForgetPassworsVerify extends State<ForgetPassworsVerify> {
     final height = MediaQuery.of(context).size.height;
 
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: const Color(0xFFF6F8FA),
       body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.symmetric(
@@ -54,20 +55,23 @@ class _ForgetPassworsVerify extends State<ForgetPassworsVerify> {
               // Qoraalka sare
               Text(
                 widget.isPhoneSelected
-                    ? "Verify your phone number "
+                    ? "Verify your phone number"
                     : "Please check your email",
-                style: TextStyle(fontSize: width * 0.09, height: 1.5),
+                style: TextStyle(
+                  fontSize: width * 0.09,
+                  height: 1.5,
+                  color: AppColors.black,
+                ),
               ),
 
               SizedBox(height: height * 0.011),
               Text(
                 widget.isPhoneSelected
                     ? "We have sent an SMS with an Activation code \nto your phone +252*******52"
-                    : "We,re send a code to youremail.gmail.com",
+                    : "We sent a code to youremail@gmail.com",
                 style: TextStyle(
-                  color: Colors.grey,
+                  color: AppColors.grey,
                   fontSize: width * 0.039,
-
                   height: 1.5,
                 ),
               ),
@@ -85,10 +89,10 @@ class _ForgetPassworsVerify extends State<ForgetPassworsVerify> {
                       focusNode: focusNodes[index],
                       keyboardType: TextInputType.number,
                       textAlign: TextAlign.center,
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
-                        color: Colors.black,
+                        color: AppColors.black,
                       ),
                       maxLength: 1,
                       inputFormatters: [FilteringTextInputFormatter.digitsOnly],
@@ -96,16 +100,16 @@ class _ForgetPassworsVerify extends State<ForgetPassworsVerify> {
                         counterText: "",
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10),
-                          borderSide: const BorderSide(color: Colors.grey),
+                          borderSide: BorderSide(color: AppColors.grey),
                         ),
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10),
-                          borderSide: const BorderSide(color: Colors.grey),
+                          borderSide: BorderSide(color: AppColors.grey),
                         ),
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10),
-                          borderSide: const BorderSide(
-                            color: Colors.orange,
+                          borderSide: BorderSide(
+                            color: AppColors.primaryColor,
                             width: 2,
                           ),
                         ),
@@ -132,16 +136,16 @@ class _ForgetPassworsVerify extends State<ForgetPassworsVerify> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Text(
+                  Text(
                     "I didn't receive the code  ",
-                    style: TextStyle(color: Colors.grey),
+                    style: TextStyle(color: AppColors.grey),
                   ),
                   GestureDetector(
                     onTap: () {},
-                    child: const Text(
+                    child: Text(
                       "Resend",
                       style: TextStyle(
-                        color: Color(0xFFC3161C),
+                        color: AppColors.primaryColor,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
