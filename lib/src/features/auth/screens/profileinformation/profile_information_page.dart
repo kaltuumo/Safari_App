@@ -1,6 +1,7 @@
 // file: personal_info_page.dart
 import 'package:flutter/material.dart';
 import 'package:safari_app/src/features/auth/screens/createpassword/create_new_password.dart';
+import 'package:safari_app/src/features/pages/screens/profile/profile_page.dart';
 import 'package:safari_app/src/shared/app_button.dart';
 import 'package:safari_app/src/utils/constant/colors.dart';
 
@@ -29,11 +30,28 @@ class _ProfileInformationPage extends State<ProfileInformationPage> {
         child: Padding(
           padding: EdgeInsets.symmetric(
             horizontal: width * 0.05,
-            vertical: height * 0.12,
+            vertical: height * 0.08,
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              InkWell(
+                onTap: () {
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const ProfilePage(),
+                    ),
+                  );
+                },
+                child: const Icon(
+                  Icons.arrow_back_ios_new_rounded,
+                  size: 25,
+                  color: Color(0xFF111827),
+                ),
+              ),
+
+              SizedBox(height: height * 0.025),
               // Title
               Text(
                 "Profile Information",

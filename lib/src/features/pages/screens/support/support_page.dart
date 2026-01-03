@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:safari_app/src/features/pages/screens/support/widget/support_option_widget.dart';
 import 'package:safari_app/src/utils/constant/colors.dart';
-import 'package:safari_app/src/utils/constant/images.dart';
 
 class SupportPage extends StatefulWidget {
   const SupportPage({super.key});
@@ -35,7 +35,7 @@ class _SupportPageState extends State<SupportPage> {
                   children: [
                     InkWell(
                       onTap: () {
-                        Navigator.pop(context); // Dib ugu laab page-ka hore
+                        Navigator.pop(context);
                       },
                       borderRadius: BorderRadius.circular(999),
                       child: Container(
@@ -71,11 +71,12 @@ class _SupportPageState extends State<SupportPage> {
                   ],
                 ),
                 const SizedBox(height: 18),
-                // Row with gray background
+
+                // Parcel / Letter toggle
                 Container(
-                  padding: const EdgeInsets.all(4), // inner padding
+                  padding: const EdgeInsets.all(4),
                   decoration: BoxDecoration(
-                    color: Colors.grey.shade200, // ✅ gray background
+                    color: Colors.grey.shade200,
                     borderRadius: BorderRadius.circular(12),
                   ),
                   child: Row(
@@ -87,49 +88,61 @@ class _SupportPageState extends State<SupportPage> {
                   ),
                 ),
 
-                SizedBox(height: height * 0.025), // ✅ Yaraynta space
-                // Support Option Containers
+                SizedBox(height: height * 0.025),
+
+                // Support Option Widgets with primary color
                 SupportOptionWidget(
-                  imagePath: AppImages.facebookLogo,
-                  imageColor: AppColors.primaryColor, // midabka sawirka
-                  // path ka sawirkaaga
-                  title: 'Facebook',
+                  icon: Icons.headset_mic,
+                  title: "Contact Support",
+                  iconColor: AppColors.primaryColor,
                   onTap: () {
-                    print('Parcel tapped');
+                    print("Support tapped");
                   },
                 ),
 
-                // SupportOptionWidget(
-                //   icon: Iconsax.sms,
-                //   title: "Whatsapp",
-                //   onTap: () => print("Whatsapp tapped"),
-                // ),
-                // SupportOptionWidget(
-                //   icon: Icons.help_outline,
-                //   title: "FAQ",
-                //   onTap: () => print("FAQ tapped"),
-                // ),
-                // SupportOptionWidget(
-                //   icon: Icons.web_stories,
-                //   title: "Website",
-                //   onTap: () => print("Website tapped"),
-                // ),
-                // SupportOptionWidget(
-                //   icon: Icons.facebook,
-                //   title: "Facebook",
-                //   onTap: () => print("Facebook tapped"),
-                // ),
-                // SupportOptionWidget(
-                //   icon: Icons.face,
-                //   title: "Twitter",
-                //   onTap: () => print("Twitter tapped"),
-                // ),
-                // SupportOptionWidget(
-                //   icon: Icons.camera_alt_outlined,
-                //   title: "Instagram",
-                //   onTap: () => print("Instagram tapped"),
-                // ),
-                SizedBox(height: height * 0.02), // ✅ Space hooska ugu yar
+                SupportOptionWidget(
+                  icon: Icons.help_outline,
+                  title: "FAQ",
+                  iconColor: AppColors.primaryColor,
+                  onTap: () {},
+                ),
+
+                SupportOptionWidget(
+                  icon: FontAwesomeIcons.whatsapp,
+                  title: "WhatsApp",
+                  iconColor: AppColors.primaryColor,
+                  onTap: () => print("WhatsApp tapped"),
+                ),
+
+                SupportOptionWidget(
+                  icon: FontAwesomeIcons.facebookF,
+                  title: "Facebook",
+                  iconColor: AppColors.primaryColor,
+                  onTap: () => print("Facebook tapped"),
+                ),
+
+                SupportOptionWidget(
+                  icon: FontAwesomeIcons.twitter,
+                  title: "Twitter",
+                  iconColor: AppColors.primaryColor,
+                  onTap: () => print("Twitter tapped"),
+                ),
+
+                SupportOptionWidget(
+                  icon: FontAwesomeIcons.instagram,
+                  title: "Instagram",
+                  iconColor: AppColors.primaryColor,
+                  onTap: () => print("Instagram tapped"),
+                ),
+
+                SupportOptionWidget(
+                  icon: Icons.web,
+                  title: "Website",
+                  iconColor: AppColors.primaryColor,
+                  onTap: () => print("Website tapped"),
+                ),
+
+                SizedBox(height: height * 0.02),
               ],
             ),
           ),
@@ -138,13 +151,13 @@ class _SupportPageState extends State<SupportPage> {
     );
   }
 
-  // Shipment Type Button
+  // Parcel / Letter button
   Widget _supportButton(String text, bool type) {
     return Expanded(
       child: GestureDetector(
         onTap: () {
           setState(() {
-            isParcel = type; // update selected type
+            isParcel = type;
           });
         },
         child: Container(
@@ -154,22 +167,13 @@ class _SupportPageState extends State<SupportPage> {
             borderRadius: BorderRadius.circular(10),
           ),
           alignment: Alignment.center,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const SizedBox(width: 8),
-              Text(
-                text,
-                style: TextStyle(
-                  color: (isParcel == type)
-                      ? Colors.black
-                      : Colors
-                            .black, // ✅ white text if selected, black otherwise
-                  fontWeight: FontWeight.w500,
-                  fontSize: 16,
-                ),
-              ),
-            ],
+          child: Text(
+            text,
+            style: TextStyle(
+              color: Colors.black,
+              fontWeight: FontWeight.w500,
+              fontSize: 16,
+            ),
           ),
         ),
       ),

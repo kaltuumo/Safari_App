@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:safari_app/src/app_navigator.dart';
 import 'package:safari_app/src/features/auth/screens/resetpassword/reset_password_page.dart';
 import 'package:safari_app/src/shared/app_button.dart';
 import 'package:safari_app/src/utils/constant/colors.dart';
@@ -23,7 +22,6 @@ class _AccountSecurityPageState extends State<AccountSecurityPage> {
 
     return Scaffold(
       backgroundColor: const Color(0xFFF6F8FA),
-      bottomNavigationBar: const AppNavigator(),
 
       body: Padding(
         padding: EdgeInsets.symmetric(

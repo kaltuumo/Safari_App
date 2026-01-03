@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:safari_app/src/features/auth/screens/profileinformation/profile_information_page.dart';
+import 'package:safari_app/src/features/pages/screens/profile/about/about_page.dart';
 import 'package:safari_app/src/features/pages/screens/profile/accountSecurity/account_security_page.dart';
+import 'package:safari_app/src/features/pages/screens/profile/language/language_page.dart';
 import 'package:safari_app/src/features/pages/screens/profile/notification/push_notafication_page.dart';
 import 'package:safari_app/src/features/pages/screens/profile/privacy&policy/privacy_policy_page.dart';
+import 'package:safari_app/src/features/pages/screens/profile/widget/profile_section_title.dart';
+import 'package:safari_app/src/features/pages/screens/profile/widget/profile_setting_item.dart';
 import 'package:safari_app/src/features/pages/screens/support/support_page.dart';
 import 'package:safari_app/src/utils/constant/colors.dart';
 
@@ -21,11 +25,11 @@ class ProfilePage extends StatelessWidget {
         child: Padding(
           padding: EdgeInsets.symmetric(
             horizontal: width * 0.09,
-            vertical: height * 0.08,
+            vertical: height * 0.0399, // yarayn vertical padding
           ),
           child: Column(
             children: [
-              /// Scrollable content
+              // Scrollable content
               Expanded(
                 child: SingleChildScrollView(
                   child: Column(
@@ -68,18 +72,8 @@ class ProfilePage extends StatelessWidget {
                       SizedBox(height: height * 0.04),
 
                       /// ================= PERSONAL INFO =================
-                      _sectionTitle(
-                        "Personal Info",
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => ProfileInformationPage(),
-                            ),
-                          );
-                        },
-                      ),
-                      _settingItem(
+                      ProfileSectionTitle(title: "Personal Information"),
+                      ProfileSettingItem(
                         icon: Iconsax.user,
                         title: "Personal Data",
                         onTap: () {
@@ -91,7 +85,7 @@ class ProfilePage extends StatelessWidget {
                           );
                         },
                       ),
-                      _settingItem(
+                      ProfileSettingItem(
                         icon: Iconsax.lock,
                         title: "Account Security",
                         onTap: () {
@@ -107,9 +101,20 @@ class ProfilePage extends StatelessWidget {
                       SizedBox(height: height * 0.025),
 
                       /// ================= GENERAL =================
-                      _sectionTitle("General"),
-                      _settingItem(icon: Iconsax.global, title: "Language"),
-                      _settingItem(
+                      ProfileSectionTitle(title: "General"),
+                      ProfileSettingItem(
+                        icon: Iconsax.global,
+                        title: "Language",
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => LanguagePage(),
+                            ),
+                          );
+                        },
+                      ),
+                      ProfileSettingItem(
                         icon: Iconsax.notification,
                         title: "Push Notification",
                         onTap: () {
@@ -121,7 +126,7 @@ class ProfilePage extends StatelessWidget {
                           );
                         },
                       ),
-                      _settingItem(
+                      ProfileSettingItem(
                         icon: Iconsax.trash,
                         title: "Clear Cache",
                         trailingText: "88 MB",
@@ -130,8 +135,8 @@ class ProfilePage extends StatelessWidget {
                       SizedBox(height: height * 0.025),
 
                       /// ================= ABOUT =================
-                      _sectionTitle("About"),
-                      _settingItem(
+                      ProfileSectionTitle(title: "About"),
+                      ProfileSettingItem(
                         icon: Iconsax.message_question,
                         title: "Support Center",
                         onTap: () {
@@ -143,7 +148,7 @@ class ProfilePage extends StatelessWidget {
                           );
                         },
                       ),
-                      _settingItem(
+                      ProfileSettingItem(
                         icon: Iconsax.shield_tick,
                         title: "Privacy & Policy",
                         onTap: () {
@@ -155,18 +160,28 @@ class ProfilePage extends StatelessWidget {
                           );
                         },
                       ),
-                      _settingItem(
+                      ProfileSettingItem(
                         icon: Iconsax.info_circle,
                         title: "About App",
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => AboutPage(),
+                            ),
+                          );
+                        },
                       ),
 
-                      SizedBox(height: height * 0.02),
+                      SizedBox(
+                        height: height * 0.08,
+                      ), // space for logout button
                     ],
                   ),
                 ),
               ),
 
-              /// ================= LOGOUT =================
+              // ================= LOGOUT BUTTON =================
               Container(
                 width: double.infinity,
                 padding: EdgeInsets.symmetric(vertical: height * 0.018),
@@ -190,70 +205,8 @@ class ProfilePage extends StatelessWidget {
                   ],
                 ),
               ),
-              SizedBox(height: height * 0.02),
             ],
           ),
-        ),
-      ),
-    );
-  }
-
-  /// ================= SECTION TITLE =================
-  Widget _sectionTitle(String title, {VoidCallback? onTap}) {
-    return InkWell(
-      onTap: onTap,
-      child: Padding(
-        padding: const EdgeInsets.only(bottom: 10),
-        child: Text(
-          title,
-          style: const TextStyle(
-            color: AppColors.grey,
-            fontSize: 13,
-            fontWeight: FontWeight.w600,
-          ),
-        ),
-      ),
-    );
-  }
-
-  /// ================= SETTING ITEM =================
-  Widget _settingItem({
-    required IconData icon,
-    required String title,
-    String? trailingText,
-    VoidCallback? onTap,
-  }) {
-    return InkWell(
-      onTap: onTap,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 6.0),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Icon(icon, color: AppColors.grey, size: 22),
-            const SizedBox(width: 16),
-            Expanded(
-              child: Text(
-                title,
-                style: const TextStyle(
-                  fontSize: 15,
-                  fontWeight: FontWeight.w500,
-                  color: AppColors.black,
-                ),
-              ),
-            ),
-            if (trailingText != null)
-              Text(
-                trailingText,
-                style: const TextStyle(color: AppColors.grey, fontSize: 13),
-              ),
-            const SizedBox(width: 6),
-            const Icon(
-              Icons.arrow_forward_ios,
-              size: 14,
-              color: AppColors.grey,
-            ),
-          ],
         ),
       ),
     );

@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:safari_app/src/utils/constant/colors.dart';
 
 class SupportOptionWidget extends StatelessWidget {
-  final String imagePath; // sawirka asset path
+  final IconData icon; // ✅ Icon halkii imagePath
   final String title;
-  final Color? imageColor; // midabka sawirka
+  final Color? iconColor; // midabka icon
   final VoidCallback? onTap;
 
   const SupportOptionWidget({
     super.key,
-    required this.imagePath,
+    required this.icon,
     required this.title,
-    this.imageColor, // optional
+    this.iconColor, // optional
     this.onTap,
   });
 
@@ -24,7 +24,7 @@ class SupportOptionWidget extends StatelessWidget {
       onTap: onTap,
       child: Container(
         padding: EdgeInsets.symmetric(
-          horizontal: width * 0.06,
+          horizontal: width * 0.04,
           vertical: height * 0.02,
         ),
         margin: EdgeInsets.only(bottom: height * 0.02),
@@ -34,13 +34,7 @@ class SupportOptionWidget extends StatelessWidget {
         ),
         child: Row(
           children: [
-            Image.asset(
-              imagePath, // isticmaal imagePath halkii static Facebook logo
-              width: 40,
-              height: 40,
-              color: imageColor, // halkan waxaad siineysaa midabka dibedda
-              colorBlendMode: BlendMode.srcIn,
-            ),
+            Icon(icon, size: 20, color: iconColor ?? AppColors.black),
             SizedBox(width: width * 0.04),
             Expanded(
               child: Text(

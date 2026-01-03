@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:safari_app/src/features/pages/screens/home/widget/check_rates_bottomsheet.dart';
+import 'package:safari_app/src/features/pages/screens/home/checkRates/widget/check_rates_bottomsheet.dart';
 import 'package:safari_app/src/shared/app_button.dart';
 import 'package:safari_app/src/utils/constant/colors.dart';
 
