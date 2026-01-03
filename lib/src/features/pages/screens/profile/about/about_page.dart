@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:safari_app/src/features/pages/screens/profile/about/widget/about_item.dart';
 import 'package:safari_app/src/utils/constant/colors.dart';
 import 'package:safari_app/src/utils/constant/images.dart';
 
@@ -95,33 +96,6 @@ class AboutPage extends StatelessWidget {
           ],
         ),
       ),
-    );
-  }
-}
-
-/// CUSTOM LIST ITEM
-class AboutItem extends StatelessWidget {
-  final String title;
-
-  const AboutItem({super.key, required this.title});
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        ListTile(
-          title: Text(
-            title,
-            style: const TextStyle(
-              fontSize: 17,
-              fontWeight: FontWeight.w400,
-              color: AppColors.black,
-            ),
-          ),
-          trailing: const Icon(Icons.chevron_right),
-          onTap: () {},
-        ),
-      ],
     );
   }
 }
